@@ -8827,3 +8827,103 @@ film photography, candid street snapshot aesthetic, razor-sharp focus on subject
 ```
 
 ***
+
+<a name="case-436"></a>
+
+### 例 436：数码相机屏幕怀旧人像
+
+![数码相机屏幕怀旧人像](../data/images/case436.jpg)
+
+**来源：** [@Ciri_ai](https://x.com/Ciri_ai/status/2055876982630686956)
+
+**提示词：**
+
+```text
+A realistic close-up shot of a small digital camera screen glowing brightly in a dark indoor environment. Displayed on the LCD is a candid early-2010s style photograph of a young East Asian woman with long dark wavy hair standing beside a wooden shelf packed tightly with colorful comic books and magazines.
+
+She wears a black spaghetti-strap top with a loose white cardigan hanging casually from both shoulders and faded blue jeans. Captured mid-laugh while turning her face slightly sideways, her expression feels spontaneous and natural, with hair falling softly across part of her cheek.
+
+The harsh direct flash from the compact camera creates strong highlights on her face and cardigan while flattening shadows in the background, producing an authentic nostalgic digicam aesthetic. Slight motion blur and digital grain enhance the candid realism.
+
+Camera UI overlays are visible across the LCD screen, including the timestamp “8. 1. 2012 3:15 AM,” exposure data “1/30 F3.4 ISO 100,” focus indicators, and a small green battery symbol in the corner.
+
+The image preserves visible screen pixel structure, slight glare reflections, chromatic softness, and compressed digital texture. Outside the LCD, the surrounding darkness fades smoothly into blur, emphasizing the glowing nostalgic screen.
+
+Shot to resemble an authentic Sony Cyber-shot point-and-shoot camera from the early 2010s using a CCD sensor with vintage digital rendering and imperfect flash exposure.
+```
+
+***
+
+<a name="case-437"></a>
+
+### 例 437：面部美学分析报告
+
+![面部美学分析报告](../data/images/case437.jpg)
+
+**来源：** [@saniaspeaks_](https://x.com/saniaspeaks_/status/2055857787637522908)
+
+**提示词：**
+
+```text
+Create a clean, minimal, luxury-style facial aesthetics analysis report based on the uploaded portrait photo.
+Design style:
+Ultra-modern black and white interface, premium editorial aesthetic, thin elegant divider lines, soft rounded cards, subtle shadows, spacious layout, luxury skincare / fashion magazine vibe, monochrome palette, Apple-style UI refinement.
+Include:
+– A simple contour line-art drawing of the face based on the subject
+– Facial symmetry analysis
+– Face shape identification
+– Proportional analysis (eyes, nose, jawline, lips, forehead)
+– Skin texture observations
+– Hairstyle compatibility suggestions
+– Grooming and fashion recommendations
+– Honest attractiveness evaluation with balanced critique
+– Strengths and weaker facial areas explained objectively
+– Actionable glow-up recommendations
+– Confidence score and facial harmony score shown with elegant charts or meters
+Style notes:
+Keep the report data-driven, visually refined, realistic, and not overly flattering.
+Avoid exaggerated praise.
+Use clean typography, premium spacing, modern infographics, subtle geometric accents, and professional cosmetic consultation aesthetics.
+Visual composition:
+Magazine-quality presentation, luxury beauty report dashboard, highly organized layout, cinematic monochrome feel, minimalist infographic design, realistic facial structure interpretation, modern masculine beauty analytics.
+Rendering:
+Ultra-detailed, sharp UI design, realistic portrait adaptation, sophisticated editorial presentation, high-end branding aesthetic, 4K quality.
+```
+
+***
+
+<a name="case-438"></a>
+
+### 例 438：珠宝微缩城市广告海报
+
+![珠宝微缩城市广告海报](../data/images/case438.jpg)
+
+**来源：** [@Umar__786Ai](https://x.com/Umar__786Ai/status/2055664244138349055)
+
+**提示词：**
+
+```text
+Create a hyper-detailed luxury advertising poster in a cinematic miniature-world style. A gigantic royal diamond necklace with intricate gold filigree and massive ruby gemstones stands in the center like an architectural monument. Surround the necklace with a futuristic miniature city built around and inside the jewelry piece, including skyscrapers, elevated highways, bridges, spiral staircases, tiny human figures, luxury billboards, drones, helicopters, and cinematic urban activity. Use a deep crimson red monochrome background with gold and ruby accents. Add premium fashion-ad aesthetics, ultra-realistic textures, glossy reflections, dramatic studio lighting, depth of field, tilt-shift miniature effect, and high-end commercial composition. Include bold elegant typography at the top saying: “EMBRACE THE EXTRAORDINARY”. Style inspired by luxury jewelry campaigns, surreal city-building concepts, and premium 3D advertising renders. Ultra realistic, 8K, octane render, sharp focus, highly detailed, cinematic shadows, symmetrical composition.
+```
+
+***
+
+<a name="case-439"></a>
+
+### 例 439：赛博黑客角色设定表
+
+![赛博黑客角色设定表](../data/images/case439.jpg)
+
+**来源：** [@Kashberg_0](https://x.com/Kashberg_0/status/2055865126335762902)
+
+**提示词：**
+
+```text
+Ultra-detailed cyberpunk anime character design sheet of a teenage genius hacker girl named “NEO // RIN”, full body turnaround (front, side, back) plus close-up portrait and accessory callouts. Short silver-white bob haircut with neon cyan and magenta gradient streaks, glowing translucent cyber visor over one eye, pale skin, sharp violet eyes, calm confident expression. Oversized techwear jacket with black tactical cargo pants, belts, straps, dangling utility tags, cropped top, futuristic sneakers, holographic accessories, barcode decals, warning symbols, “BYTE//NULL” typography, hacker aesthetic.
+Color palette: matte black, dark gray, white, neon cyan, neon pink.
+Style inspired by high-end Japanese concept art, futuristic streetwear, cyberpunk fashion, Akira + Ghost in the Shell + modern anime key visual aesthetics.
+Include clean character reference sheet layout with labeled details, logo designs, UI graphics, gadget closeups, and color palette on white background.
+Highly polished cel shading, crisp lineart, soft glow effects, intricate clothing folds, layered accessories, dynamic fashion silhouette, professional game concept art quality, 4k, ultra detailed.
+```
+
+***

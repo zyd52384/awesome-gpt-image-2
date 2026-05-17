@@ -5,7 +5,7 @@
 <p align="center">
   <a href="https://github.com/freestylefly/awesome-gpt-image-2"><img src="https://img.shields.io/github/stars/freestylefly/awesome-gpt-image-2?style=flat-square&color=rgb(25%2C%20121%2C%20255)" alt="Stars"></a>
   <a href="https://github.com/freestylefly/awesome-gpt-image-2"><img src="https://img.shields.io/github/forks/freestylefly/awesome-gpt-image-2?style=flat-square&color=green" alt="Forks"></a>
-  <a href="https://github.com/freestylefly/awesome-gpt-image-2"><img src="https://img.shields.io/badge/Cases-435-blueviolet?style=flat-square" alt="Cases"></a>
+  <a href="https://github.com/freestylefly/awesome-gpt-image-2"><img src="https://img.shields.io/badge/Cases-439-blueviolet?style=flat-square" alt="Cases"></a>
   <a href="https://github.com/freestylefly/awesome-gpt-image-2"><img src="https://img.shields.io/badge/100%25-Original_AI_Rewritten-green?style=flat-square" alt="Original"></a>
 </p>
 
@@ -50,7 +50,7 @@ The core goal is simple: compress prose-style prompts into structured protocols.
 
 - [Full case gallery](docs/gallery.md)
 - [Gallery Part 1: cases 1-165](docs/gallery-part-1.md)
-- [Gallery Part 2: cases 166-435](docs/gallery-part-2.md)
+- [Gallery Part 2: cases 166-439](docs/gallery-part-2.md)
 - [Industrial prompt templates and pitfalls guide](docs/templates.md)
 - [Agent skill: GPT-Image2 Style Library](agents/skills/gpt-image-2-style-library/SKILL.md)
 - [MIT License](LICENSE)
@@ -65,7 +65,7 @@ Start with the case album to find a visual direction, then open the prompt templ
 <table>
   <tr>
     <td width="33%" valign="top" align="center">
-      <p><strong>🧩 UI & Interfaces</strong><br><sub>63 cases</sub></p>
+      <p><strong>🧩 UI & Interfaces</strong><br><sub>72 cases</sub></p>
       <a href="docs/gallery.md#cat-ui"><img src="data/images/category-covers/ui.jpg" alt="UI and interfaces" width="220"></a><br>
       <sub>Apps, websites, dashboards, social screenshots, and product interfaces.</sub><br>
       <a href="docs/gallery.md#cat-ui"><strong>View Cases</strong></a>
@@ -85,19 +85,19 @@ Start with the case album to find a visual direction, then open the prompt templ
   </tr>
   <tr>
     <td width="33%" valign="top" align="center">
-      <p><strong>🛍️ Products & E-commerce</strong><br><sub>28 cases</sub></p>
+      <p><strong>🛍️ Products & E-commerce</strong><br><sub>30 cases</sub></p>
       <a href="docs/gallery.md#cat-product"><img src="data/images/category-covers/product.jpg" alt="Products and e-commerce" width="220"></a><br>
       <sub>Product shots, detail pages, packaging, selling points, and ads.</sub><br>
       <a href="docs/gallery.md#cat-product"><strong>View Cases</strong></a>
     </td>
     <td width="33%" valign="top" align="center">
-      <p><strong>🏷️ Brand & Logos</strong><br><sub>20 cases</sub></p>
+      <p><strong>🏷️ Brand & Logos</strong><br><sub>21 cases</sub></p>
       <a href="docs/gallery.md#cat-brand"><img src="data/images/category-covers/brand.jpg" alt="Brand and logos" width="220"></a><br>
       <sub>Logos, identity systems, brand touchpoints, and campaign visuals.</sub><br>
       <a href="docs/gallery.md#cat-brand"><strong>View Cases</strong></a>
     </td>
     <td width="33%" valign="top" align="center">
-      <p><strong>🏛️ Architecture & Spaces</strong><br><sub>10 cases</sub></p>
+      <p><strong>🏛️ Architecture & Spaces</strong><br><sub>11 cases</sub></p>
       <a href="docs/gallery.md#cat-architecture"><img src="data/images/category-covers/architecture.jpg" alt="Architecture and spaces" width="220"></a><br>
       <sub>Architecture renders, interiors, city maps, and spatial concepts.</sub><br>
       <a href="docs/gallery.md#cat-architecture"><strong>View Cases</strong></a>
@@ -105,7 +105,7 @@ Start with the case album to find a visual direction, then open the prompt templ
   </tr>
   <tr>
     <td width="33%" valign="top" align="center">
-      <p><strong>📷 Photography & Realism</strong><br><sub>54 cases</sub></p>
+      <p><strong>📷 Photography & Realism</strong><br><sub>55 cases</sub></p>
       <a href="docs/gallery.md#cat-photo"><img src="data/images/category-covers/photo.jpg" alt="Photography and realism" width="220"></a><br>
       <sub>Portraits, phone photography, film texture, and commercial photography.</sub><br>
       <a href="docs/gallery.md#cat-photo"><strong>View Cases</strong></a>
@@ -117,7 +117,7 @@ Start with the case album to find a visual direction, then open the prompt templ
       <a href="docs/gallery.md#cat-illustration"><strong>View Cases</strong></a>
     </td>
     <td width="33%" valign="top" align="center">
-      <p><strong>🧍 Characters & People</strong><br><sub>20 cases</sub></p>
+      <p><strong>🧍 Characters & People</strong><br><sub>21 cases</sub></p>
       <a href="docs/gallery.md#cat-character"><img src="data/images/category-covers/character.jpg" alt="Characters and people" width="220"></a><br>
       <sub>Character design, pose references, cards, and 3D toys.</sub><br>
       <a href="docs/gallery.md#cat-character"><strong>View Cases</strong></a>
@@ -145,7 +145,7 @@ Start with the case album to find a visual direction, then open the prompt templ
   </tr>
   <tr>
     <td width="33%" valign="top" align="center">
-      <p><strong>🧪 Other Use Cases</strong><br><sub>29 cases</sub></p>
+      <p><strong>🧪 Other Use Cases</strong><br><sub>28 cases</sub></p>
       <a href="docs/gallery.md#cat-other"><img src="data/images/category-covers/other.jpg" alt="Other use cases" width="220"></a><br>
       <sub>Creative experiments, special tasks, mixed workflows, and practical cases.</sub><br>
       <a href="docs/gallery.md#cat-other"><strong>View Cases</strong></a>
@@ -153,14 +153,14 @@ Start with the case album to find a visual direction, then open the prompt templ
     <td width="33%" valign="top" align="center">
       <h4>🖼️ Full Gallery</h4>
       <a href="docs/gallery.md"><img src="data/images/category-covers/gallery.jpg" alt="Full gallery" width="220"></a><br>
-      <sub>Browse all 435 cases by gallery part and category.</sub><br>
+      <sub>Browse all 439 cases by gallery part and category.</sub><br>
       <a href="docs/gallery.md"><strong>Open Gallery</strong></a>
     </td>
     <td width="33%" valign="top" align="center">
       <h4>⭐ Latest Additions</h4>
-      <a href="docs/gallery-part-2.md#case-435"><img src="data/images/case435.jpg" alt="Latest additions" width="220"></a><br>
+      <a href="docs/gallery-part-2.md#case-439"><img src="data/images/case439.jpg" alt="Latest additions" width="220"></a><br>
       <sub>The newest community cases and workflows collected in the repo.</sub><br>
-      <a href="docs/gallery-part-2.md#case-435"><strong>View Latest</strong></a>
+      <a href="docs/gallery-part-2.md#case-439"><strong>View Latest</strong></a>
     </td>
   </tr>
 </table>
@@ -428,30 +428,30 @@ Only the latest collection and import run is shown here. Older imports stay in t
 <table>
   <tr>
     <td width="50%" valign="top" align="center">
-      <p><strong>Case 432: Great Barrier Reef Travel Poster</strong></p>
-      <a href="docs/gallery-part-2.md#case-432"><img src="data/images/case432.jpg" alt="Great Barrier Reef travel poster" width="140"></a><br>
-      <sub>A flat vector reef poster with coral layers, snorkeler composition, and vintage tourism typography.</sub><br>
-      <a href="docs/gallery-part-2.md#case-432"><strong>View Case</strong></a>
+      <p><strong>Case 436: Digicam LCD Nostalgia Portrait</strong></p>
+      <a href="docs/gallery-part-2.md#case-436"><img src="data/images/case436.jpg" alt="Digicam LCD nostalgia portrait" width="140"></a><br>
+      <sub>A glowing compact-camera screen framing a 2010s flash snapshot with LCD UI overlays and nostalgic sensor texture.</sub><br>
+      <a href="docs/gallery-part-2.md#case-436"><strong>View Case</strong></a>
     </td>
     <td width="50%" valign="top" align="center">
-      <p><strong>Case 433: Korean Watercolor City Street</strong></p>
-      <a href="docs/gallery-part-2.md#case-433"><img src="data/images/case433.jpg" alt="Korean watercolor city street" width="140"></a><br>
-      <sub>A peaceful Korean street rendered as ink-and-watercolor travel journal art with bakery lights and wet pavement.</sub><br>
-      <a href="docs/gallery-part-2.md#case-433"><strong>View Case</strong></a>
+      <p><strong>Case 437: Facial Aesthetics Analysis Report</strong></p>
+      <a href="docs/gallery-part-2.md#case-437"><img src="data/images/case437.jpg" alt="Facial aesthetics analysis report" width="140"></a><br>
+      <sub>A monochrome beauty-report interface combining portrait adaptation, symmetry charts, facial proportions, and editorial dashboard layout.</sub><br>
+      <a href="docs/gallery-part-2.md#case-437"><strong>View Case</strong></a>
     </td>
   </tr>
   <tr>
     <td width="50%" valign="top" align="center">
-      <p><strong>Case 434: Tokyo Film Street Portrait</strong></p>
-      <a href="docs/gallery-part-2.md#case-434"><img src="data/images/case434.jpg" alt="Tokyo film street portrait" width="140"></a><br>
-      <sub>A candid Tokyo backstreet portrait with film grain, vending machines, soft urban depth, and phone-photo realism.</sub><br>
-      <a href="docs/gallery-part-2.md#case-434"><strong>View Case</strong></a>
+      <p><strong>Case 438: Jewelry Miniature City Poster</strong></p>
+      <a href="docs/gallery-part-2.md#case-438"><img src="data/images/case438.jpg" alt="Jewelry miniature city poster" width="140"></a><br>
+      <sub>A luxury necklace campaign where the product becomes an architectural monument inside a crimson miniature city.</sub><br>
+      <a href="docs/gallery-part-2.md#case-438"><strong>View Case</strong></a>
     </td>
     <td width="50%" valign="top" align="center">
-      <p><strong>Case 435: Layered Papercraft Couple</strong></p>
-      <a href="docs/gallery-part-2.md#case-435"><img src="data/images/case435.jpg" alt="Layered papercraft couple" width="140"></a><br>
-      <sub>A warm paper-cut diorama prompt with stacked depth planes, soft shadows, rounded characters, and pastel craft texture.</sub><br>
-      <a href="docs/gallery-part-2.md#case-435"><strong>View Case</strong></a>
+      <p><strong>Case 439: Cyber Hacker Character Sheet</strong></p>
+      <a href="docs/gallery-part-2.md#case-439"><img src="data/images/case439.jpg" alt="Cyber hacker character sheet" width="140"></a><br>
+      <sub>A polished cyberpunk anime reference sheet with turnaround poses, accessory callouts, palette swatches, and UI graphics.</sub><br>
+      <a href="docs/gallery-part-2.md#case-439"><strong>View Case</strong></a>
     </td>
   </tr>
 </table>

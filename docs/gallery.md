@@ -1,10 +1,10 @@
 ## 🖼️ 魔法画廊总览
 
-完整画廊已按 GitHub 渲染体积拆成两册，避免页面被截断；当前总案例数为 435。
+完整画廊已按 GitHub 渲染体积拆成两册，避免页面被截断；当前总案例数为 439。
 
 - [返回 README 首页](../README.md)
 - [Part 1：例 1-165](./gallery-part-1.md)
-- [Part 2：例 166-435](./gallery-part-2.md)
+- [Part 2：例 166-439](./gallery-part-2.md)
 - [工业级提示词模板与防坑指南](./templates.md)
 - [声明、Star 趋势图与公众号](./disclaimer.md)
 
@@ -103,33 +103,37 @@
 - [例 433：韩国城市水彩旅行插画](./gallery-part-2.md#case-433)
 - [例 434：东京街头胶片人像](./gallery-part-2.md#case-434)
 - [例 435：层叠纸雕情侣插画](./gallery-part-2.md#case-435)
+- [例 436：数码相机屏幕怀旧人像](./gallery-part-2.md#case-436)
+- [例 437：面部美学分析报告](./gallery-part-2.md#case-437)
+- [例 438：珠宝微缩城市广告海报](./gallery-part-2.md#case-438)
+- [例 439：赛博黑客角色设定表](./gallery-part-2.md#case-439)
 
 ## 分册说明
 
 - `gallery-part-1.md`：例 1-165，覆盖信息图、界面、海报、摄影、插画等基础主流类型。
-- `gallery-part-2.md`：例 166-435，包含更多品牌、卡牌、直播截图、国风、商业视觉、作者新增实测与社区案例。
+- `gallery-part-2.md`：例 166-439，包含更多品牌、卡牌、直播截图、国风、商业视觉、作者新增实测与社区案例。
 
 ## 分类概览
 
-- UI与界面：63
+- UI与界面：72
 - 图表与信息可视化：45
 - 海报与排版：71
-- 商品与电商：28
-- 品牌与标志：20
-- 建筑与空间：10
-- 摄影与写实：54
+- 商品与电商：30
+- 品牌与标志：21
+- 建筑与空间：11
+- 摄影与写实：55
 - 插画与艺术：41
-- 人物与角色：20
+- 人物与角色：21
 - 场景与叙事：16
 - 历史与古风题材：16
 - 文档与出版物：9
-- 其他应用场景：29
+- 其他应用场景：28
 
 ## 分类案例入口
 
 <a name="cat-ui"></a>
 
-### 🧩 UI与界面 · 63 cases
+### 🧩 UI与界面 · 72 cases
 
 - [例 2：社媒界面截图](./gallery-part-1.md#case-2)
 - [例 4：老干妈风味](./gallery-part-1.md#case-4)
@@ -194,6 +198,7 @@
 - [例 402：3D 小红书个人资料卡](./gallery-part-2.md#case-402)
 - [例 403：小红书数字破屏 3D 女孩](./gallery-part-2.md#case-403)
 - [例 404：豪华社媒破屏商业广告](./gallery-part-2.md#case-404)
+- [例 437：面部美学分析报告](./gallery-part-2.md#case-437)
 
 <a name="cat-infographic"></a>
 
@@ -322,7 +327,7 @@
 
 <a name="cat-product"></a>
 
-### 🛍️ 商品与电商 · 28 cases
+### 🛍️ 商品与电商 · 30 cases
 
 - [例 17：界面交互设计图](./gallery-part-1.md#case-17)
 - [例 33：电商商品展示设计](./gallery-part-1.md#case-33)
@@ -352,10 +357,11 @@
 - [例 370：Crumple Chair 概念沙发研发板](./gallery-part-2.md#case-370)
 - [例 373：高端肉类海鲜品牌英雄图](./gallery-part-2.md#case-373)
 - [例 424：FMCG 棒棒糖霓虹广告](./gallery-part-2.md#case-424)
+- [例 438：珠宝微缩城市广告海报](./gallery-part-2.md#case-438)
 
 <a name="cat-brand"></a>
 
-### 🏷️ 品牌与标志 · 20 cases
+### 🏷️ 品牌与标志 · 21 cases
 
 - [例 130：界面交互设计图](./gallery-part-1.md#case-130)
 - [例 132：界面交互设计图](./gallery-part-1.md#case-132)
@@ -380,7 +386,7 @@
 
 <a name="cat-architecture"></a>
 
-### 🏛️ 建筑与空间 · 10 cases
+### 🏛️ 建筑与空间 · 11 cases
 
 - [例 11：一张手绘风格的城市美食地图，以台州为主题](./gallery-part-1.md#case-11)
 - [例 18：信息图可视化设计](./gallery-part-1.md#case-18)
@@ -395,7 +401,7 @@
 
 <a name="cat-photo"></a>
 
-### 📷 摄影与写实 · 54 cases
+### 📷 摄影与写实 · 55 cases
 
 - [例 24：漫画分镜叙事设计](./gallery-part-1.md#case-24)
 - [例 26：建筑空间场景图](./gallery-part-1.md#case-26)
@@ -451,6 +457,7 @@
 - [例 428：F1 直播转播围场截图](./gallery-part-2.md#case-428)
 - [例 429：韩国便利店粉色 Hoodie 人像](./gallery-part-2.md#case-429)
 - [例 434：东京街头胶片人像](./gallery-part-2.md#case-434)
+- [例 436：数码相机屏幕怀旧人像](./gallery-part-2.md#case-436)
 
 <a name="cat-illustration"></a>
 
@@ -501,7 +508,7 @@
 
 <a name="cat-character"></a>
 
-### 🧍 人物与角色 · 20 cases
+### 🧍 人物与角色 · 21 cases
 
 - [例 25：综合应用场景图](./gallery-part-1.md#case-25)
 - [例 27：人物角色设定图](./gallery-part-1.md#case-27)
@@ -523,6 +530,7 @@
 - [例 397：](./gallery-part-2.md#case-397)
 - [例 398：](./gallery-part-2.md#case-398)
 - [例 416：Earth Signs 角色 Scrapbook](./gallery-part-2.md#case-416)
+- [例 439：赛博黑客角色设定表](./gallery-part-2.md#case-439)
 
 <a name="cat-scene"></a>
 
@@ -582,7 +590,7 @@
 
 <a name="cat-other"></a>
 
-### 🧪 其他应用场景 · 29 cases
+### 🧪 其他应用场景 · 28 cases
 
 - [例 78：图像生成案例图](./gallery-part-1.md#case-78)
 - [例 79：图像生成案例图](./gallery-part-1.md#case-79)
