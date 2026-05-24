@@ -197,7 +197,7 @@ export default async function handler(req, res) {
         p_start_date: range.startDate,
         p_end_date: range.endDate
       }),
-      getGa4Traffic(range.preset === 'custom' ? { startDate: range.startDate, endDate: range.endDate } : range.days)
+      getGa4Traffic({ startDate: range.startDate, endDate: range.endDate })
     ]);
 
     const activeBusinessResult = businessResult.status === 'fulfilled' && !businessResult.value?.error
