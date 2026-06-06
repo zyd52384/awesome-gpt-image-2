@@ -1,10 +1,10 @@
 ## 🖼️ 魔法画廊总览
 
-完整画廊已按 GitHub 渲染体积拆成两册，避免页面被截断；当前总案例数为 505。
+完整画廊已按 GitHub 渲染体积拆成两册，避免页面被截断；当前总案例数为 506。
 
 - [返回 README 首页](../README.md)
 - [Part 1：例 1-165](./gallery-part-1.md)
-- [Part 2：例 166-505](./gallery-part-2.md)
+- [Part 2：例 166-506](./gallery-part-2.md)
 - [工业级提示词模板与防坑指南](./templates.md)
 - [声明、Star 趋势图与公众号](./disclaimer.md)
 
@@ -165,17 +165,18 @@
 - [例 503：霓虹设计师 3D 海报](./gallery-part-2.md#case-503)
 - [例 504：粗糙涂鸦人像改图](./gallery-part-2.md#case-504)
 - [例 505：夜间手机光沙发肖像](./gallery-part-2.md#case-505)
+- [例 506：可爱发卡图文人像海报](./gallery-part-2.md#case-506)
 
 ## 分册说明
 
 - `gallery-part-1.md`：例 1-165，覆盖信息图、界面、海报、摄影、插画等基础主流类型。
-- `gallery-part-2.md`：例 166-505，包含更多品牌、卡牌、直播截图、国风、商业视觉、作者新增实测与社区案例。
+- `gallery-part-2.md`：例 166-506，包含更多品牌、卡牌、直播截图、国风、商业视觉、作者新增实测与社区案例。
 
 ## 分类概览
 
 - UI与界面：73
 - 图表与信息可视化：52
-- 海报与排版：79
+- 海报与排版：80
 - 商品与电商：38
 - 品牌与标志：25
 - 建筑与空间：12
@@ -318,7 +319,7 @@
 
 <a name="cat-poster"></a>
 
-### 📰 海报与排版 · 79 cases
+### 📰 海报与排版 · 80 cases
 
 - [例 3：足球主题电影海报](./gallery-part-1.md#case-3)
 - [例 5：主题海报版式设计](./gallery-part-1.md#case-5)
@@ -400,6 +401,7 @@
 - [例 486：RCB 冠军混合媒介海报](./gallery-part-2.md#case-486)
 - [例 497：单色水彩城市旅行海报](./gallery-part-2.md#case-497)
 - [例 503：霓虹设计师 3D 海报](./gallery-part-2.md#case-503)
+- [例 506：可爱发卡图文人像海报](./gallery-part-2.md#case-506)
 
 <a name="cat-product"></a>
 

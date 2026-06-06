@@ -5,7 +5,7 @@
 <p align="center">
   <a href="https://github.com/freestylefly/awesome-gpt-image-2"><img src="https://img.shields.io/github/stars/freestylefly/awesome-gpt-image-2?style=flat-square&color=rgb(25%2C%20121%2C%20255)" alt="Stars"></a>
   <a href="https://github.com/freestylefly/awesome-gpt-image-2"><img src="https://img.shields.io/github/forks/freestylefly/awesome-gpt-image-2?style=flat-square&color=green" alt="Forks"></a>
-  <a href="https://github.com/freestylefly/awesome-gpt-image-2"><img src="https://img.shields.io/badge/Cases-505-blueviolet?style=flat-square" alt="Cases"></a>
+  <a href="https://github.com/freestylefly/awesome-gpt-image-2"><img src="https://img.shields.io/badge/Cases-506-blueviolet?style=flat-square" alt="Cases"></a>
   <a href="https://github.com/freestylefly/awesome-gpt-image-2"><img src="https://img.shields.io/badge/100%25-Original_AI_Rewritten-green?style=flat-square" alt="Original"></a>
   <a href="https://github.com/sponsors/freestylefly"><img src="https://img.shields.io/badge/Sponsor-GitHub%20Sponsors-ff69b4?style=flat-square" alt="Sponsor"></a>
 </p>
@@ -62,7 +62,7 @@ The core goal is simple: compress prose-style prompts into structured protocols.
 
 - [Full case gallery](docs/gallery.md)
 - [Gallery Part 1: cases 1-165](docs/gallery-part-1.md)
-- [Gallery Part 2: cases 166-505](docs/gallery-part-2.md)
+- [Gallery Part 2: cases 166-506](docs/gallery-part-2.md)
 - [Industrial prompt templates and pitfalls guide](docs/templates.md)
 - [Agent skill: GPT-Image2 Style Library](agents/skills/gpt-image-2-style-library/SKILL.md)
 - [MIT License](LICENSE)
@@ -89,7 +89,7 @@ Start with the case album to find a visual direction, then open the prompt templ
       <a href="docs/gallery.md#cat-infographic"><strong>View Cases</strong></a>
     </td>
     <td width="33%" valign="top" align="center">
-      <p><strong>📰 Posters & Typography</strong><br><sub>79 cases</sub></p>
+      <p><strong>📰 Posters & Typography</strong><br><sub>80 cases</sub></p>
       <a href="docs/gallery.md#cat-poster"><img src="data/images/category-covers/poster.jpg" alt="Posters and typography" width="220"></a><br>
       <sub>Event posters, covers, type-driven visuals, and strong layout compositions.</sub><br>
       <a href="docs/gallery.md#cat-poster"><strong>View Cases</strong></a>
@@ -165,14 +165,14 @@ Start with the case album to find a visual direction, then open the prompt templ
     <td width="33%" valign="top" align="center">
       <h4>🖼️ Full Gallery</h4>
       <a href="docs/gallery.md"><img src="data/images/category-covers/gallery.jpg" alt="Full gallery" width="220"></a><br>
-      <sub>Browse all 505 cases by gallery part and category.</sub><br>
+      <sub>Browse all 506 cases by gallery part and category.</sub><br>
       <a href="docs/gallery.md"><strong>Open Gallery</strong></a>
     </td>
     <td width="33%" valign="top" align="center">
       <h4>⭐ Latest Additions</h4>
-      <a href="docs/gallery-part-2.md#case-505"><img src="data/images/case505.jpg" alt="Latest additions" width="220"></a><br>
+      <a href="docs/gallery-part-2.md#case-506"><img src="data/images/case506.jpg" alt="Latest additions" width="220"></a><br>
       <sub>The newest community cases and workflows collected in the repo.</sub><br>
-      <a href="docs/gallery-part-2.md#case-505"><strong>View Latest</strong></a>
+      <a href="docs/gallery-part-2.md#case-506"><strong>View Latest</strong></a>
     </td>
   </tr>
 </table>
@@ -439,37 +439,11 @@ Only the latest collection and import run is shown here. Older imports stay in t
 
 <table>
   <tr>
-    <td width="33%" valign="top" align="center">
-      <p><strong>Case 501: Summer Follow-Me Cinematic Portrait</strong></p>
-      <a href="docs/gallery-part-2.md#case-501"><img src="data/images/case501.jpg" alt="Summer Follow-Me Cinematic Portrait" width="150"></a><br>
-      <sub>A sunlit follow-me portrait prompt focused on natural rim light, windblown hair, realistic skin texture, and couple POV framing.</sub><br>
-      <a href="docs/gallery-part-2.md#case-501"><strong>View Case</strong></a>
-    </td>
-    <td width="33%" valign="top" align="center">
-      <p><strong>Case 502: Recursive King of Spades Playing Card</strong></p>
-      <a href="docs/gallery-part-2.md#case-502"><img src="data/images/case502.jpg" alt="Recursive King of Spades Playing Card" width="150"></a><br>
-      <sub>A surreal luxury playing-card portrait with King of Spades identity, Queen of Hearts framing, and recursive card-within-card storytelling.</sub><br>
-      <a href="docs/gallery-part-2.md#case-502"><strong>View Case</strong></a>
-    </td>
-    <td width="33%" valign="top" align="center">
-      <p><strong>Case 503: Neon Designer 3D Poster</strong></p>
-      <a href="docs/gallery-part-2.md#case-503"><img src="data/images/case503.jpg" alt="Neon Designer 3D Poster" width="150"></a><br>
-      <sub>A blue neon creator poster with oversized streetwear, floating design tools, motivational typography, and a collectible chibi mini-figure.</sub><br>
-      <a href="docs/gallery-part-2.md#case-503"><strong>View Case</strong></a>
-    </td>
-  </tr>
-  <tr>
-    <td width="50%" valign="top" align="center">
-      <p><strong>Case 504: Messy Doodle Portrait Remix</strong></p>
-      <a href="docs/gallery-part-2.md#case-504"><img src="data/images/case504.jpg" alt="Messy Doodle Portrait Remix" width="150"></a><br>
-      <sub>A deliberately low-skill doodle transformation prompt with crooked anatomy, marker texture, scribbles, paper grain, and meme energy.</sub><br>
-      <a href="docs/gallery-part-2.md#case-504"><strong>View Case</strong></a>
-    </td>
-    <td width="50%" valign="top" align="center">
-      <p><strong>Case 505: Late-Night Phone Glow Sofa Portrait</strong></p>
-      <a href="docs/gallery-part-2.md#case-505"><img src="data/images/case505.jpg" alt="Late-Night Phone Glow Sofa Portrait" width="150"></a><br>
-      <sub>A dim room social-media portrait using warm tungsten light, cool phone-screen reflections, low-light grain, and imperfect candid sharpness.</sub><br>
-      <a href="docs/gallery-part-2.md#case-505"><strong>View Case</strong></a>
+    <td width="100%" valign="top" align="center">
+      <p><strong>Case 506: Cute Hairpin Portrait Poster</strong></p>
+      <a href="docs/gallery-part-2.md#case-506"><img src="data/images/case506.jpg" alt="Cute Hairpin Portrait Poster" width="150"></a><br>
+      <sub>A bright portrait poster system combining cropped celebrity photography, a cute hairpin-like mascot, airy Chinese typography, and clean color fields.</sub><br>
+      <a href="docs/gallery-part-2.md#case-506"><strong>View Case</strong></a>
     </td>
   </tr>
 </table>

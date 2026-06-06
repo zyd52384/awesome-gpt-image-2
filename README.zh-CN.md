@@ -5,7 +5,7 @@
 <p align="center">
   <a href="https://github.com/freestylefly/awesome-gpt-image-2"><img src="https://img.shields.io/github/stars/freestylefly/awesome-gpt-image-2?style=flat-square&color=rgb(25%2C%20121%2C%20255)" alt="Stars"></a>
   <a href="https://github.com/freestylefly/awesome-gpt-image-2"><img src="https://img.shields.io/github/forks/freestylefly/awesome-gpt-image-2?style=flat-square&color=green" alt="Forks"></a>
-  <a href="https://github.com/freestylefly/awesome-gpt-image-2"><img src="https://img.shields.io/badge/Cases-505-blueviolet?style=flat-square" alt="Cases"></a>
+  <a href="https://github.com/freestylefly/awesome-gpt-image-2"><img src="https://img.shields.io/badge/Cases-506-blueviolet?style=flat-square" alt="Cases"></a>
   <a href="https://github.com/freestylefly/awesome-gpt-image-2"><img src="https://img.shields.io/badge/100%25-Original_AI_Rewritten-green?style=flat-square" alt="Original"></a>
   <a href="https://github.com/sponsors/freestylefly"><img src="https://img.shields.io/badge/Sponsor-GitHub%20Sponsors-ff69b4?style=flat-square" alt="Sponsor"></a>
 </p>
@@ -62,7 +62,7 @@ GPT-Image2 全量开放后，AI 画图从“能不能出图”变成了“能不
 
 - [完整案例总览](docs/gallery.md)
 - [案例画廊 Part 1：例 1-165](docs/gallery-part-1.md)
-- [案例画廊 Part 2：例 166-505](docs/gallery-part-2.md)
+- [案例画廊 Part 2：例 166-506](docs/gallery-part-2.md)
 - [工业级提示词模板与防坑指南](docs/templates.md#section-templates)
 - [Agent Skill：GPT-Image2 风格库](agents/skills/gpt-image-2-style-library/SKILL.md)
 - [MIT License](LICENSE)
@@ -89,7 +89,7 @@ GPT-Image2 全量开放后，AI 画图从“能不能出图”变成了“能不
       <a href="docs/gallery.md#cat-infographic"><strong>查看案例</strong></a>
     </td>
     <td width="33%" valign="top" align="center">
-      <p><strong>📰 海报与排版</strong><br><sub>79 cases</sub></p>
+      <p><strong>📰 海报与排版</strong><br><sub>80 cases</sub></p>
       <a href="docs/gallery.md#cat-poster"><img src="data/images/category-covers/poster.jpg" alt="海报与排版" width="220"></a><br>
       <sub>活动海报、封面、字体视觉和强排版画面。</sub><br>
       <a href="docs/gallery.md#cat-poster"><strong>查看案例</strong></a>
@@ -165,14 +165,14 @@ GPT-Image2 全量开放后，AI 画图从“能不能出图”变成了“能不
     <td width="33%" valign="top" align="center">
       <h4>🖼️ 完整画廊</h4>
       <a href="docs/gallery.md"><img src="data/images/category-covers/gallery.jpg" alt="完整画廊" width="220"></a><br>
-      <sub>按分册浏览全部 505 个案例和代表案例入口。</sub><br>
+      <sub>按分册浏览全部 506 个案例和代表案例入口。</sub><br>
       <a href="docs/gallery.md"><strong>进入画廊</strong></a>
     </td>
     <td width="33%" valign="top" align="center">
       <h4>⭐ 最新新增</h4>
-      <a href="docs/gallery-part-2.md#case-505"><img src="data/images/case505.jpg" alt="最新新增" width="220"></a><br>
+      <a href="docs/gallery-part-2.md#case-506"><img src="data/images/case506.jpg" alt="最新新增" width="220"></a><br>
       <sub>最近收录的 X 社区案例和新玩法。</sub><br>
-      <a href="docs/gallery-part-2.md#case-505"><strong>查看最新</strong></a>
+      <a href="docs/gallery-part-2.md#case-506"><strong>查看最新</strong></a>
     </td>
   </tr>
 </table>
@@ -435,37 +435,11 @@ GOOGLE_ANALYTICS_REFRESH_TOKEN=
 
 <table>
   <tr>
-    <td width="33%" valign="top" align="center">
-      <p><strong>例 501：夏日牵手回眸电影肖像</strong></p>
-      <a href="docs/gallery-part-2.md#case-501"><img src="data/images/case501.jpg" alt="夏日牵手回眸电影肖像" width="180"></a><br>
-      <sub>自然阳光下的牵手回眸肖像，重点在发丝轮廓光、真实肤质和情侣 POV 构图。</sub><br>
-      <a href="docs/gallery-part-2.md#case-501"><strong>查看案例</strong></a>
-    </td>
-    <td width="33%" valign="top" align="center">
-      <p><strong>例 502：黑桃国王递归扑克牌</strong></p>
-      <a href="docs/gallery-part-2.md#case-502"><img src="data/images/case502.jpg" alt="黑桃国王递归扑克牌" width="180"></a><br>
-      <sub>黑桃国王身份肖像与红桃皇后视角交织，利用牌中牌递归制造奇幻叙事。</sub><br>
-      <a href="docs/gallery-part-2.md#case-502"><strong>查看案例</strong></a>
-    </td>
-    <td width="33%" valign="top" align="center">
-      <p><strong>例 503：霓虹设计师 3D 海报</strong></p>
-      <a href="docs/gallery-part-2.md#case-503"><img src="data/images/case503.jpg" alt="霓虹设计师 3D 海报" width="180"></a><br>
-      <sub>蓝色霓虹创作者海报，结合街头穿搭、悬浮设计工具、励志字样和 Q 版收藏小人。</sub><br>
-      <a href="docs/gallery-part-2.md#case-503"><strong>查看案例</strong></a>
-    </td>
-  </tr>
-  <tr>
-    <td width="50%" valign="top" align="center">
-      <p><strong>例 504：粗糙涂鸦人像改图</strong></p>
-      <a href="docs/gallery-part-2.md#case-504"><img src="data/images/case504.jpg" alt="粗糙涂鸦人像改图" width="180"></a><br>
-      <sub>故意低技能的涂鸦改图，强调歪斜比例、马克笔质感、随手涂写和纸张颗粒。</sub><br>
-      <a href="docs/gallery-part-2.md#case-504"><strong>查看案例</strong></a>
-    </td>
-    <td width="50%" valign="top" align="center">
-      <p><strong>例 505：夜间手机光沙发肖像</strong></p>
-      <a href="docs/gallery-part-2.md#case-505"><img src="data/images/case505.jpg" alt="夜间手机光沙发肖像" width="180"></a><br>
-      <sub>暗室社媒风肖像，使用暖钨丝灯、冷手机屏幕反光、低光颗粒和自然抓拍感。</sub><br>
-      <a href="docs/gallery-part-2.md#case-505"><strong>查看案例</strong></a>
+    <td width="100%" valign="top" align="center">
+      <p><strong>例 506：可爱发卡图文人像海报</strong></p>
+      <a href="docs/gallery-part-2.md#case-506"><img src="data/images/case506.jpg" alt="可爱发卡图文人像海报" width="180"></a><br>
+      <sub>明亮清爽的人像图文海报，把裁切人像、可爱发卡式拟物符号、中文排版和干净色场组合起来。</sub><br>
+      <a href="docs/gallery-part-2.md#case-506"><strong>查看案例</strong></a>
     </td>
   </tr>
 </table>
