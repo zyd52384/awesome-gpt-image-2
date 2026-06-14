@@ -5,6 +5,7 @@ import {
   readRawBody
 } from '../_lib/billing.js';
 import { verifySign, isHupijiaoConfigured } from '../_lib/hupijiao.js';
+import querystring from 'querystring';
 
 export const config = {
   api: {
@@ -18,15 +19,11 @@ function json(res, status, payload) {
 
 /**
  * Parse URL-encoded form body from raw buffer
+ * Use Node's querystring to properly decode + as space
  */
 function parseFormBody(buffer) {
   const text = buffer.toString('utf8');
-  const params = {};
-  text.split('&').forEach((pair) => {
-    const [key, value] = pair.split('=').map((s) => decodeURIComponent(s || ''));
-    if (key) params[key] = value;
-  });
-  return params;
+  return querystring.parse(text);
 }
 
 /**
