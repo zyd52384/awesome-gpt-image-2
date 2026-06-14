@@ -37,8 +37,8 @@ import { isSupabaseConfigured, supabase } from './supabaseClient';
 import wechatCommunityImage from './assets/wechat-community.jpg';
 import skillExampleImage from '../agents/skills/gpt-image-2-style-library/assets/city-life-system-map.png';
 
-const fallbackRepoUrl = 'https://github.com/freestylefly/awesome-gpt-image-2';
-const sponsorUrl = 'https://apimart.ai/register?aff=oQgzUQ';
+const fallbackRepoUrl = 'https://github.com/zyd52384/awesome-gpt-image-2';
+const sponsorUrl = '';
 const gaMeasurementId = import.meta.env.VITE_GA_MEASUREMENT_ID;
 const watchaLogoUrl =
   'https://watcha.tos-cn-beijing.volces.com/products/logo/1752064513_guan-cha-insights.png?x-tos-process=image/resize,w_720/format,webp';
