@@ -15,27 +15,29 @@ export function getHupijiaoConfig() {
 }
 
 /**
- * Generate 虎皮椒 MD5 sign
- * Sorted by key, joined with &, appended with &key=appsecret, then MD5
+ * Generate 虎皮椒 hash (signature)
+ * 1. Sort params by key (ASCII ascending)
+ * 2. Join as key=value pairs with &
+ * 3. Append appsecret directly (no separator)
+ * 4. MD5 hash → lowercase
  */
 export function generateSign(params, appsecret) {
   const keys = Object.keys(params).sort();
   const parts = keys
-    .filter((k) => k !== 'sign' && k !== 'sign_type')
+    .filter((k) => k !== 'hash')
     .map((k) => `${k}=${params[k]}`);
-  parts.push(`key=${appsecret}`);
-  const raw = parts.join('&');
+  const raw = parts.join('&') + appsecret;
   return crypto.createHash('md5').update(raw, 'utf8').digest('hex').toLowerCase();
 }
 
 /**
- * Verify 虎皮椒 notify sign
+ * Verify 虎皮椒 notify hash (signature)
  */
 export function verifySign(params, appsecret) {
-  const sign = params.sign;
-  if (!sign) return false;
+  const hash = params.hash;
+  if (!hash) return false;
   const expected = generateSign(params, appsecret);
-  return sign.toLowerCase() === expected.toLowerCase();
+  return hash.toLowerCase() === expected.toLowerCase();
 }
 
 /**
@@ -56,9 +58,10 @@ export async function createHupijiaoPayment({
   }
 
   const time = Math.floor(Date.now() / 1000);
-  const nonceStr = crypto.randomBytes(16).toString('hex');
+  const nonceStr = crypto.randomBytes(8).toString('hex');
 
   const params = {
+    version: '1.1',
     appid: config.appid,
     trade_order_id: tradeOrderId,
     total_fee: totalFee.toFixed(2),
@@ -73,12 +76,18 @@ export async function createHupijiaoPayment({
     params.type = type;
   }
 
-  params.sign = generateSign(params, config.appsecret);
+  // Generate hash (signature) — hash is the param name 虎皮椒 uses
+  params.hash = generateSign(params, config.appsecret);
+
+  // 虎皮椒 API accepts form-urlencoded
+  const body = Object.keys(params)
+    .map((k) => `${encodeURIComponent(k)}=${encodeURIComponent(String(params[k]))}`)
+    .join('&');
 
   const response = await fetch(config.apiUrl, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(params)
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body
   });
 
   const text = await response.text();

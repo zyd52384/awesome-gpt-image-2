@@ -154,8 +154,8 @@ export default async function handler(req, res) {
       return json(res, 200, 'sign error'); // 虎皮椒 expects this format
     }
 
-    // Only process successful payments
-    if (params.status === '1') {
+    // Only process successful payments — 虎皮椒 uses 'OD' for paid
+    if (params.status === 'OD') {
       const client = getSupabaseAdminClient();
       await handlePaymentSuccess(client, params);
     } else {
