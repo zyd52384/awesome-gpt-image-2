@@ -1253,14 +1253,30 @@ function AuthModal({ open, language, initialErrorCode, onClose }) {
     if (result.error) {
       setStatus('error');
       setMessage(authErrorMessage(result.error, language));
-    } else if (isSignUp && result.data?.user?.identities?.length === 0) {
-      setStatus('error');
-      setMessage(t.authError);
     } else if (isSignUp) {
-      setStatus('sent');
-      setMessage(t.authEmailSent);
-      setEmail('');
-      setPassword('');
+      // 注册后自动确认，无需邮件验证
+      setMessage(t.signingUp);
+      try {
+        await fetch('/api/auth/confirm-signup', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ userId: result.data.user?.id })
+        });
+      } catch (e) {
+        // 确认失败不影响登录体验
+        console.warn('Auto-confirm failed:', e);
+      }
+      // 确认后自动登录
+      const loginResult = await supabase.auth.signInWithPassword({
+        email: trimmedEmail,
+        password
+      });
+      if (loginResult.error) {
+        setStatus('error');
+        setMessage(authErrorMessage(loginResult.error, language));
+      } else {
+        onClose();
+      }
     } else {
       onClose();
     }
