@@ -131,11 +131,20 @@ const copy = {
     authRequired: 'Sign in to generate a test image.',
     signIn: 'Sign in',
     signInTitle: 'Sign in to generate test images',
-    signInSubtitle: 'Use Google or Watcha to unlock image generation, credits, and membership features.',
+    signInSubtitle: 'Sign in with email to unlock image generation, credits, and membership features.',
     authRateLimited: 'Too many login attempts. Please wait a bit, then try again.',
     googleNotConfigured: 'Google sign-in is not enabled yet.',
     continueWithGoogle: 'Continue with Google',
     continueWithWatcha: 'Continue with Watcha',
+    signInWithEmail: 'Sign in with Email',
+    signUpWithEmail: 'Create Account',
+    emailLabel: 'Email',
+    passwordLabel: 'Password',
+    switchToSignUp: 'No account? Create one',
+    switchToSignIn: 'Already have an account? Sign in',
+    signingIn: 'Signing in...',
+    signingUp: 'Creating account...',
+    authEmailSent: 'Check your email for the confirmation link.',
     authNotConfigured: 'Login is not configured yet.',
     watchaNotConfigured: 'Watcha sign-in is not configured yet.',
     watchaSessionExpired: 'Watcha sign-in expired. Please try again.',
@@ -343,11 +352,20 @@ const copy = {
     authRequired: '登录后即可生成测试图。',
     signIn: '登录',
     signInTitle: '登录后生成测试图',
-    signInSubtitle: '使用 Google 或观猹登录，解锁生图测试、积分和会员能力。',
+    signInSubtitle: '使用邮箱登录，解锁生图测试、积分和会员能力。',
     authRateLimited: '登录尝试过于频繁，请稍后再试。',
     googleNotConfigured: 'Google 登录还没有启用。',
     continueWithGoogle: '使用 Google 登录',
     continueWithWatcha: '使用观猹登录',
+    signInWithEmail: '邮箱登录',
+    signUpWithEmail: '注册账号',
+    emailLabel: '邮箱',
+    passwordLabel: '密码',
+    switchToSignUp: '没有账号？点此注册',
+    switchToSignIn: '已有账号？点此登录',
+    signingIn: '登录中...',
+    signingUp: '注册中...',
+    authEmailSent: '验证邮件已发送，请检查邮箱。',
     authNotConfigured: '登录功能还没有完成配置。',
     watchaNotConfigured: '观猹登录还没有完成配置。',
     watchaSessionExpired: '观猹登录已过期，请重新尝试。',
@@ -1177,6 +1195,9 @@ function AuthModal({ open, language, initialErrorCode, onClose }) {
   const t = copy[language];
   const [status, setStatus] = useState('idle');
   const [message, setMessage] = useState('');
+  const [isSignUp, setIsSignUp] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   useBodyScrollLock(open);
 
   useEffect(() => {
@@ -1188,46 +1209,66 @@ function AuthModal({ open, language, initialErrorCode, onClose }) {
     }
     setStatus('idle');
     setMessage('');
+    setEmail('');
+    setPassword('');
+    setIsSignUp(false);
   }, [open, initialErrorCode, language]);
 
   if (!open) return null;
 
-  const redirectTo = `${window.location.origin}${window.location.pathname}`;
-  const isLoading = status === 'loading-google' || status === 'loading-watcha';
+  const isLoading = status === 'loading-email';
 
-  async function handleGoogleSignIn() {
+  async function handleEmailAuth(event) {
+    event.preventDefault();
     if (!isSupabaseConfigured || !supabase) {
       setStatus('error');
       setMessage(t.authNotConfigured);
       return;
     }
 
-    setStatus('loading-google');
-    setMessage('');
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider: 'google',
-      options: {
-        redirectTo
-      }
-    });
-
-    if (error) {
+    const trimmedEmail = email.trim();
+    if (!trimmedEmail || !password) {
       setStatus('error');
-      setMessage(authErrorMessage(error, language));
-    }
-  }
-
-  function handleWatchaSignIn() {
-    if (!isSupabaseConfigured || !supabase) {
-      setStatus('error');
-      setMessage(t.authNotConfigured);
+      setMessage(t.authError);
       return;
     }
 
-    setStatus('loading-watcha');
+    setStatus('loading-email');
     setMessage('');
-    window.location.assign(`/api/auth/watcha/start?returnTo=${encodeURIComponent(redirectTo)}`);
+
+    let result;
+    if (isSignUp) {
+      result = await supabase.auth.signUp({
+        email: trimmedEmail,
+        password,
+        options: { emailRedirectTo: window.location.origin }
+      });
+    } else {
+      result = await supabase.auth.signInWithPassword({
+        email: trimmedEmail,
+        password
+      });
+    }
+
+    if (result.error) {
+      setStatus('error');
+      setMessage(authErrorMessage(result.error, language));
+    } else if (isSignUp && result.data?.user?.identities?.length === 0) {
+      setStatus('error');
+      setMessage(t.authError);
+    } else if (isSignUp) {
+      setStatus('sent');
+      setMessage(t.authEmailSent);
+      setEmail('');
+      setPassword('');
+    } else {
+      onClose();
+    }
   }
+
+  const buttonText = isLoading
+    ? (isSignUp ? t.signingUp : t.signingIn)
+    : (isSignUp ? t.signUpWithEmail : t.signInWithEmail);
 
   return (
     <div
@@ -1244,23 +1285,46 @@ function AuthModal({ open, language, initialErrorCode, onClose }) {
         <div className="authIcon">
           <UserCircle size={28} />
         </div>
-        <h2 id="auth-title">{t.signInTitle}</h2>
-        <p>{t.signInSubtitle}</p>
-        <div className="authProviders" aria-label={t.signInTitle}>
-          <button className="googleButton" type="button" onClick={handleGoogleSignIn} disabled={isLoading}>
-            {status === 'loading-google' ? <LoaderCircle className="spinIcon" size={18} /> : <GoogleIcon />}
-            {t.continueWithGoogle}
+        <h2 id="auth-title">{isSignUp ? t.signUpWithEmail : t.signInTitle}</h2>
+        <form className="authForm" onSubmit={handleEmailAuth}>
+          <label className="authField">
+            <span>{t.emailLabel}</span>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder={t.emailLabel}
+              autoComplete="email"
+              disabled={isLoading}
+              required
+            />
+          </label>
+          <label className="authField">
+            <span>{t.passwordLabel}</span>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder={t.passwordLabel}
+              autoComplete={isSignUp ? 'new-password' : 'current-password'}
+              disabled={isLoading}
+              required
+              minLength={6}
+            />
+          </label>
+          <button className="authSubmit" type="submit" disabled={isLoading}>
+            {isLoading ? <LoaderCircle className="spinIcon" size={18} /> : null}
+            {buttonText}
           </button>
-          <button className="watchaButton" type="button" onClick={handleWatchaSignIn} disabled={isLoading}>
-            {status === 'loading-watcha' ? <LoaderCircle className="spinIcon" size={18} /> : <WatchaIcon />}
-            {t.continueWithWatcha}
-          </button>
-        </div>
+        </form>
         {message ? (
           <p className={cx('authMessage', status === 'error' && 'error', status === 'sent' && 'sent')}>
             {message}
           </p>
         ) : null}
+        <button className="authSwitch" type="button" onClick={() => { setIsSignUp(!isSignUp); setMessage(''); setStatus('idle'); }} disabled={isLoading}>
+          {isSignUp ? t.switchToSignIn : t.switchToSignUp}
+        </button>
       </section>
     </div>
   );

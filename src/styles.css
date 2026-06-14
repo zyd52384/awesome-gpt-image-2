@@ -2001,6 +2001,90 @@ button {
   color: #ffc7c7;
 }
 
+.authForm {
+  display: grid;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.authField {
+  display: grid;
+  gap: 6px;
+}
+
+.authField span {
+  color: #8eeeff;
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.authField input {
+  width: 100%;
+  min-height: 44px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  outline: 0;
+  padding: 0 12px;
+  background: rgba(3, 7, 15, 0.72);
+  color: #fff;
+  font-weight: 850;
+}
+
+.authField input:focus {
+  border-color: rgba(103, 232, 249, 0.72);
+  box-shadow: 0 0 0 3px rgba(103, 232, 249, 0.1);
+}
+
+.authSubmit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 46px;
+  border: 1px solid rgba(120, 255, 185, 0.34);
+  border-radius: 8px;
+  padding: 0 14px;
+  background: linear-gradient(135deg, rgba(66, 230, 255, 0.2), rgba(120, 255, 185, 0.16));
+  color: #fff;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.authSubmit:hover {
+  border-color: rgba(120, 255, 185, 0.6);
+  background: linear-gradient(135deg, rgba(66, 230, 255, 0.3), rgba(120, 255, 185, 0.25));
+}
+
+.authSubmit:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.authSwitch {
+  display: block;
+  width: 100%;
+  margin-top: 14px;
+  border: 0;
+  padding: 8px;
+  background: transparent;
+  color: #7feaff;
+  font-size: 13px;
+  font-weight: 800;
+  text-align: center;
+  cursor: pointer;
+}
+
+.authSwitch:hover {
+  color: #b0f8ff;
+  text-decoration: underline;
+}
+
+.authSwitch:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
 .adminDialog {
   width: min(1180px, 100%);
   padding: 24px;
