@@ -2913,15 +2913,15 @@ function PreviewDialog({
         <div className={cx('previewMedia', generatedImage && 'hasComparison')}>
           {generatedImage ? (
             <div className="comparisonGrid">
-              <figure className="comparisonFigure">
+              <figure className="comparisonFigure originalFigure">
                 <div className="comparisonLabel">{t.originalImage}</div>
                 <img src={image} alt={imageAlt} />
               </figure>
               <figure className="comparisonFigure generatedFigure">
-                <div className="comparisonLabel">
-                  {t.generatedResult}
-                  {generationState.status === 'saved' ? <span>{t.savedInBrowser}</span> : null}
-                </div>
+                <span className="figureLabel">{t.generatedResult}</span>
+                {preview?.type === 'case' && savedAt ? (
+                  <span className="figureLabel">{new Date(savedAt).toLocaleString(language === 'zh' ? 'zh-CN' : 'en-US')}</span>
+                ) : null}
                 <img src={generatedImage} alt={t.generatedResult} />
               </figure>
             </div>
