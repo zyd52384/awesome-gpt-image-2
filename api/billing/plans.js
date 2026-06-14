@@ -1,5 +1,6 @@
 import { getAuthContext, getProfileById, isSupabaseServerConfigured } from '../_lib/supabase.js';
-import { getBillingCatalog, isStripeConfigured } from '../_lib/billing.js';
+import { getBillingCatalog } from '../_lib/billing.js';
+import { isHupijiaoConfigured } from '../_lib/hupijiao.js';
 
 function json(res, status, payload) {
   res.status(status).json(payload);
@@ -25,7 +26,7 @@ export default async function handler(req, res) {
     const user = auth.user ? await getProfileById(auth.user.id) : null;
     return json(res, 200, {
       ok: true,
-      checkoutAvailable: isStripeConfigured(),
+      checkoutAvailable: isHupijiaoConfigured(),
       ...catalog,
       user
     });

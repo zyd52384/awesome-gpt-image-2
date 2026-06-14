@@ -1,12 +1,10 @@
 import { getSupabaseAdminClient, isSupabaseServerConfigured } from '../_lib/supabase.js';
 import {
-  completeCreditPackOrder,
-  grantMembershipCredits,
-  getStripeClient,
-  isStripeConfigured,
-  readRawBody,
-  upsertMembershipFromSubscription
+  getAppUrl,
+  grantCredits,
+  readRawBody
 } from '../_lib/billing.js';
+import { verifySign, isHupijiaoConfigured } from '../_lib/hupijiao.js';
 
 export const config = {
   api: {
@@ -18,87 +16,119 @@ function json(res, status, payload) {
   res.status(status).json(payload);
 }
 
-async function handleCheckoutCompleted(client, stripe, session) {
-  const productType = session.metadata?.productType;
-  if (productType === 'credit_pack') {
-    await completeCreditPackOrder(client, session);
+/**
+ * Parse URL-encoded form body from raw buffer
+ */
+function parseFormBody(buffer) {
+  const text = buffer.toString('utf8');
+  const params = {};
+  text.split('&').forEach((pair) => {
+    const [key, value] = pair.split('=').map((s) => decodeURIComponent(s || ''));
+    if (key) params[key] = value;
+  });
+  return params;
+}
+
+/**
+ * Activate membership for a user
+ * Creates/updates user_membership with 30-day period
+ */
+async function activateMembership(client, userId, planId) {
+  const now = new Date();
+  const periodEnd = new Date(now.getTime() + 30 * 24 * 60 * 60 * 1000);
+
+  const { data, error } = await client
+    .from('user_memberships')
+    .upsert(
+      {
+        user_id: userId,
+        plan_id: planId,
+        status: 'active',
+        current_period_start: now.toISOString(),
+        current_period_end: periodEnd.toISOString(),
+        cancel_at_period_end: false,
+        monthly_credits_granted_at: now.toISOString()
+      },
+      { onConflict: 'user_id' }
+    )
+    .select('*')
+    .single();
+
+  if (error) throw error;
+  return data;
+}
+
+async function handlePaymentSuccess(client, params) {
+  const tradeOrderId = params.trade_order_id;
+  if (!tradeOrderId) {
+    console.warn('虎皮椒 notify missing trade_order_id');
     return;
   }
 
-  if (productType !== 'membership') return;
+  console.log(`虎皮椒 payment success: order=${tradeOrderId}, fee=${params.total_fee}, status=${params.status}`);
 
-  const subscriptionId = typeof session.subscription === 'string' ? session.subscription : session.subscription?.id;
-  if (!subscriptionId) return;
-
-  const subscription = await stripe.subscriptions.retrieve(subscriptionId);
-  await upsertMembershipFromSubscription(client, subscription, {
-    userId: session.metadata?.userId,
-    planId: session.metadata?.productId,
-    customerId: typeof session.customer === 'string' ? session.customer : ''
-  });
-
+  // Find the order in database
   const { data: order, error } = await client
     .from('payment_orders')
     .select('*')
-    .eq('stripe_session_id', session.id)
+    .eq('id', tradeOrderId)
     .maybeSingle();
 
   if (error) throw error;
+  if (!order) {
+    console.warn(`Order not found: ${tradeOrderId}`);
+    return;
+  }
 
-  if (order?.status !== 'completed') {
-    await grantMembershipCredits(client, {
-      userId: session.metadata?.userId || order?.user_id,
-      planId: session.metadata?.productId || order?.product_id,
-      source: 'stripe_membership_checkout',
-      orderId: order?.id || null,
+  // Idempotency: skip if already completed
+  if (order.status === 'completed') {
+    console.log(`Order already completed: ${tradeOrderId}`);
+    return;
+  }
+
+  const productType = order.product_type;
+  const productId = order.product_id;
+  const credits = Number(order.credits || 0);
+
+  // Grant credits
+  if (credits > 0) {
+    await grantCredits(client, {
+      userId: order.user_id,
+      amount: credits,
+      type: productType === 'membership' ? 'membership_grant' : 'purchase',
+      source: productType === 'membership' ? 'hupijiao_membership' : 'hupijiao_pack',
+      referenceId: order.id,
       metadata: {
-        stripeSessionId: session.id,
-        stripeSubscriptionId: subscriptionId
+        hupijiaoTradeOrderId: tradeOrderId,
+        productId: productId,
+        totalFee: params.total_fee
       }
     });
-
-    if (order) {
-      const { error: updateError } = await client
-        .from('payment_orders')
-        .update({
-          status: 'completed',
-          stripe_customer_id: typeof session.customer === 'string' ? session.customer : order.stripe_customer_id,
-          stripe_subscription_id: subscriptionId,
-          completed_at: new Date().toISOString()
-        })
-        .eq('id', order.id);
-
-      if (updateError) throw updateError;
-    }
   }
-}
 
-async function handleInvoicePaid(client, stripe, invoice) {
-  if (invoice.billing_reason === 'subscription_create') return;
+  // Activate membership if it's a membership plan
+  if (productType === 'membership') {
+    await activateMembership(client, order.user_id, productId);
+  }
 
-  const subscriptionId = typeof invoice.subscription === 'string' ? invoice.subscription : invoice.subscription?.id;
-  if (!subscriptionId) return;
+  // Mark order as completed
+  const { error: updateError } = await client
+    .from('payment_orders')
+    .update({
+      status: 'completed',
+      metadata: {
+        ...(order.metadata || {}),
+        hupijiaoTradeOrderId: tradeOrderId,
+        hupijiaoTotalFee: params.total_fee,
+        hupijiaoPaidAt: new Date().toISOString()
+      },
+      completed_at: new Date().toISOString()
+    })
+    .eq('id', order.id);
 
-  const subscription = await stripe.subscriptions.retrieve(subscriptionId);
-  const membership = await upsertMembershipFromSubscription(client, subscription);
-  const userId = subscription.metadata?.userId || membership?.user_id;
-  const planId = subscription.metadata?.productId || subscription.metadata?.planId || membership?.plan_id;
-  if (!userId || !planId) return;
+  if (updateError) throw updateError;
 
-  await grantMembershipCredits(client, {
-    userId,
-    planId,
-    source: 'stripe_membership_invoice',
-    metadata: {
-      stripeInvoiceId: invoice.id,
-      stripeSubscriptionId: subscriptionId,
-      billingReason: invoice.billing_reason || ''
-    }
-  });
-}
-
-async function handleSubscriptionChanged(client, subscription) {
-  await upsertMembershipFromSubscription(client, subscription);
+  console.log(`Order completed: ${tradeOrderId} (${productType})`);
 }
 
 export default async function handler(req, res) {
@@ -107,48 +137,38 @@ export default async function handler(req, res) {
     return json(res, 405, { ok: false, error: 'METHOD_NOT_ALLOWED' });
   }
 
-  if (!isSupabaseServerConfigured() || !isStripeConfigured() || !process.env.STRIPE_WEBHOOK_SECRET) {
-    return json(res, 500, { ok: false, error: 'BILLING_NOT_CONFIGURED' });
+  if (!isSupabaseServerConfigured() || !isHupijiaoConfigured()) {
+    return json(res, 500, { ok: false, error: 'PAYMENT_NOT_CONFIGURED' });
   }
-
-  const stripe = getStripeClient();
-  const client = getSupabaseAdminClient();
-  const signature = req.headers['stripe-signature'];
-  let event;
 
   try {
     const rawBody = await readRawBody(req);
-    event = stripe.webhooks.constructEvent(rawBody, signature, process.env.STRIPE_WEBHOOK_SECRET);
-  } catch (error) {
-    return json(res, 400, {
-      ok: false,
-      error: 'INVALID_WEBHOOK_SIGNATURE'
-    });
-  }
+    const params = parseFormBody(rawBody);
 
-  try {
-    switch (event.type) {
-      case 'checkout.session.completed':
-        await handleCheckoutCompleted(client, stripe, event.data.object);
-        break;
-      case 'invoice.payment_succeeded':
-        await handleInvoicePaid(client, stripe, event.data.object);
-        break;
-      case 'customer.subscription.updated':
-      case 'customer.subscription.deleted':
-        await handleSubscriptionChanged(client, event.data.object);
-        break;
-      default:
-        break;
+    console.log(`虎皮椒 notify received: ${JSON.stringify(params)}`);
+
+    // Verify signature
+    const appsecret = process.env.HUPIJIAO_APPSECRET || '';
+    if (!verifySign(params, appsecret)) {
+      console.warn('虎皮椒 signature verification failed');
+      return json(res, 200, 'sign error'); // 虎皮椒 expects this format
     }
 
-    return json(res, 200, { ok: true, received: true });
+    // Only process successful payments
+    if (params.status === '1') {
+      const client = getSupabaseAdminClient();
+      await handlePaymentSuccess(client, params);
+    } else {
+      console.log(`虎皮椒 payment not yet paid: status=${params.status}, order=${params.trade_order_id}`);
+    }
+
+    // 虎皮椒 expects "success" text on success, no JSON
+    res.status(200).send('success');
   } catch (error) {
-    console.warn('Failed to process Stripe webhook', {
-      eventType: event.type,
-      eventId: event.id,
+    console.warn('Failed to process 虎皮椒 webhook', {
       message: String(error?.message || 'unknown').slice(0, 240)
     });
-    return json(res, 500, { ok: false, error: 'WEBHOOK_PROCESSING_FAILED' });
+    // Return success to 虎皮椒 anyway (don't retry)
+    res.status(200).send('success');
   }
 }

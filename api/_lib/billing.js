@@ -1,23 +1,4 @@
-import Stripe from 'stripe';
-
-const STRIPE_API_VERSION = '2026-02-25.clover';
-const DEFAULT_APP_URL = 'https://gpt-image2.canghe.ai';
-
-let stripeClient;
-
-export function isStripeConfigured() {
-  return Boolean(process.env.STRIPE_SECRET_KEY);
-}
-
-export function getStripeClient() {
-  if (!isStripeConfigured()) return null;
-  if (!stripeClient) {
-    stripeClient = new Stripe(process.env.STRIPE_SECRET_KEY, {
-      apiVersion: STRIPE_API_VERSION
-    });
-  }
-  return stripeClient;
-}
+const DEFAULT_APP_URL = 'https://image2.coffeeapi.online';
 
 export function getAppUrl(req) {
   if (process.env.APP_URL) return process.env.APP_URL.replace(/\/$/, '');
@@ -51,13 +32,17 @@ export async function readRawBody(req) {
 }
 
 function normalizeCurrency(value) {
-  return String(value || 'usd').toLowerCase();
+  return String(value || 'cny').toLowerCase();
 }
 
 function moneyLabel(amountCents, currency) {
+  const cur = normalizeCurrency(currency).toUpperCase();
+  if (cur === 'CNY') {
+    return `¥${(Number(amountCents || 0) / 100).toFixed(0)}`;
+  }
   return new Intl.NumberFormat('en-US', {
     style: 'currency',
-    currency: normalizeCurrency(currency).toUpperCase()
+    currency: cur
   }).format(Number(amountCents || 0) / 100);
 }
 
@@ -139,53 +124,7 @@ export async function getBillingProduct(client, productType, productId) {
   return productType === 'membership' ? formatPlan(data) : formatPack(data);
 }
 
-export async function getOrCreateStripeCustomer({ client, stripe, user, profile }) {
-  if (profile?.stripeCustomerId) return profile.stripeCustomerId;
-
-  const customer = await stripe.customers.create({
-    email: profile?.email || user.email || undefined,
-    name: profile?.fullName || undefined,
-    metadata: {
-      userId: user.id
-    }
-  });
-
-  const { error } = await client
-    .from('profiles')
-    .update({ stripe_customer_id: customer.id })
-    .eq('id', user.id);
-
-  if (error) throw error;
-  return customer.id;
-}
-
-export function checkoutLineItem(product) {
-  const priceData = {
-    currency: product.currency,
-    unit_amount: product.amountCents,
-    product_data: {
-      name: product.name.en,
-      description: product.description.en,
-      metadata: {
-        productType: product.type,
-        productId: product.id
-      }
-    }
-  };
-
-  if (product.type === 'membership') {
-    priceData.recurring = {
-      interval: product.interval || 'month'
-    };
-  }
-
-  return {
-    quantity: 1,
-    price_data: priceData
-  };
-}
-
-export async function createPaymentOrder(client, { userId, product, customerId }) {
+export async function createPaymentOrder(client, { userId, product, customerId = null }) {
   const credits = product.type === 'membership' ? product.monthlyCredits : product.credits;
   const { data, error } = await client
     .from('payment_orders')
@@ -206,17 +145,13 @@ export async function createPaymentOrder(client, { userId, product, customerId }
   return data;
 }
 
-export async function markOrderCheckoutCreated(client, orderId, session) {
+export async function markOrderCheckoutCreated(client, orderId, paymentInfo = {}) {
   const { data, error } = await client
     .from('payment_orders')
     .update({
       status: 'checkout_created',
-      stripe_session_id: session.id,
-      stripe_customer_id: typeof session.customer === 'string' ? session.customer : null,
-      stripe_subscription_id: typeof session.subscription === 'string' ? session.subscription : null,
-      metadata: {
-        checkoutUrl: session.url || ''
-      }
+      stripe_session_id: paymentInfo.tradeOrderId || null,
+      metadata: paymentInfo
     })
     .eq('id', orderId)
     .select('*')
@@ -224,55 +159,6 @@ export async function markOrderCheckoutCreated(client, orderId, session) {
 
   if (error) throw error;
   return data;
-}
-
-function stripeTimestampToIso(value) {
-  return value ? new Date(value * 1000).toISOString() : null;
-}
-
-function normalizeSubscriptionStatus(status) {
-  if (['trialing', 'active', 'past_due', 'canceled', 'unpaid'].includes(status)) return status;
-  return 'inactive';
-}
-
-export async function upsertMembershipFromSubscription(client, subscription, fallback = {}) {
-  const userId = subscription.metadata?.userId || fallback.userId;
-  const planId = subscription.metadata?.productId || subscription.metadata?.planId || fallback.planId;
-  if (!userId || !planId) return null;
-
-  const item = subscription.items?.data?.[0] || {};
-  const payload = {
-    user_id: userId,
-    plan_id: planId,
-    status: normalizeSubscriptionStatus(subscription.status),
-    stripe_customer_id: typeof subscription.customer === 'string' ? subscription.customer : fallback.customerId || null,
-    stripe_subscription_id: subscription.id,
-    current_period_start: stripeTimestampToIso(subscription.current_period_start || item.current_period_start),
-    current_period_end: stripeTimestampToIso(subscription.current_period_end || item.current_period_end),
-    cancel_at_period_end: Boolean(subscription.cancel_at_period_end)
-  };
-
-  const { data, error } = await client
-    .from('user_memberships')
-    .upsert(payload, { onConflict: 'user_id' })
-    .select('*')
-    .single();
-
-  if (error) throw error;
-  return data;
-}
-
-async function hasTransactionWithMetadata(client, userId, source, metadata) {
-  const { data, error } = await client
-    .from('credit_transactions')
-    .select('id')
-    .eq('user_id', userId)
-    .eq('source', source)
-    .contains('metadata', metadata)
-    .limit(1);
-
-  if (error) throw error;
-  return Boolean(data?.length);
 }
 
 export async function grantCredits(client, { userId, amount, type, source, referenceId = null, metadata = {} }) {
@@ -287,77 +173,4 @@ export async function grantCredits(client, { userId, amount, type, source, refer
 
   if (error) throw error;
   return Array.isArray(data) ? data[0] : data;
-}
-
-export async function completeCreditPackOrder(client, session) {
-  const { data: order, error } = await client
-    .from('payment_orders')
-    .select('*')
-    .eq('stripe_session_id', session.id)
-    .maybeSingle();
-
-  if (error) throw error;
-  if (!order || order.status === 'completed') return order || null;
-  if (order.product_type !== 'credit_pack') return order;
-
-  await grantCredits(client, {
-    userId: order.user_id,
-    amount: Number(order.credits || 0),
-    type: 'purchase',
-    source: 'stripe_checkout',
-    referenceId: order.id,
-    metadata: {
-      stripeSessionId: session.id,
-      productId: order.product_id
-    }
-  });
-
-  const { data, error: updateError } = await client
-    .from('payment_orders')
-    .update({
-      status: 'completed',
-      stripe_customer_id: typeof session.customer === 'string' ? session.customer : order.stripe_customer_id,
-      completed_at: new Date().toISOString()
-    })
-    .eq('id', order.id)
-    .select('*')
-    .single();
-
-  if (updateError) throw updateError;
-  return data;
-}
-
-export async function grantMembershipCredits(client, { userId, planId, source, metadata, orderId = null }) {
-  const { data: plan, error } = await client
-    .from('membership_plans')
-    .select('*')
-    .eq('id', planId)
-    .maybeSingle();
-
-  if (error) throw error;
-  if (!plan || !plan.active) return null;
-
-  if (await hasTransactionWithMetadata(client, userId, source, metadata)) {
-    return null;
-  }
-
-  await grantCredits(client, {
-    userId,
-    amount: Number(plan.monthly_credits || 0),
-    type: 'membership_grant',
-    source,
-    referenceId: orderId,
-    metadata: {
-      ...metadata,
-      planId,
-      monthlyCredits: Number(plan.monthly_credits || 0)
-    }
-  });
-
-  await client
-    .from('user_memberships')
-    .update({ monthly_credits_granted_at: new Date().toISOString() })
-    .eq('user_id', userId);
-
-  return plan;
 }

@@ -126,7 +126,7 @@ const copy = {
     serverUnavailable: 'Generation service is not configured yet.',
     checkoutUnavailable: 'Checkout is not configured yet.',
     checkoutFailed: 'Checkout failed. Please try again later.',
-    billingSuccess: 'Payment is processing. Credits will appear after Stripe confirms it.',
+    billingSuccess: 'Payment successful! Credits have been added to your account.',
     billingCancelled: 'Checkout cancelled. You can choose another pack anytime.',
     authRequired: 'Sign in to generate a test image.',
     signIn: 'Sign in',
@@ -189,8 +189,8 @@ const copy = {
     noTransactions: 'No credit history yet.',
     loadBilling: 'Loading billing...',
     openBilling: 'Open membership center',
-    paymentReady: 'Secure checkout via Stripe.',
-    billingNotReady: 'Stripe checkout is not configured yet.',
+    paymentReady: 'WeChat Pay / Alipay secured payment.',
+    billingNotReady: 'Payment is not configured yet.',
     adminAdjust: 'Adjust credits',
     creditAmount: 'Amount',
     reason: 'Reason',
@@ -347,7 +347,7 @@ const copy = {
     serverUnavailable: '生成服务还没有完成配置。',
     checkoutUnavailable: '支付功能还没有完成配置。',
     checkoutFailed: '创建支付失败，请稍后再试。',
-    billingSuccess: '支付正在处理中，Stripe 确认后积分会自动到账。',
+    billingSuccess: '支付成功！积分已到账。',
     billingCancelled: '已取消支付，你可以随时换一个积分包或会员方案。',
     authRequired: '登录后即可生成测试图。',
     signIn: '登录',
@@ -410,8 +410,8 @@ const copy = {
     noTransactions: '暂无积分流水。',
     loadBilling: '正在加载会员与积分...',
     openBilling: '打开会员中心',
-    paymentReady: '使用 Stripe 安全支付。',
-    billingNotReady: 'Stripe 支付还没有完成配置。',
+    paymentReady: '微信支付/支付宝安全支付。',
+    billingNotReady: '支付还没有完成配置。',
     adminAdjust: '调整积分',
     creditAmount: '数量',
     reason: '原因',
@@ -2476,12 +2476,6 @@ function BillingPanel({
                 );
               })}
             </div>
-            {profile?.membership?.isActive ? (
-              <button className="portalButton" type="button" onClick={handlePortal} disabled={busyProduct === 'portal'}>
-                {busyProduct === 'portal' ? <LoaderCircle className="spinIcon" size={16} /> : <CreditCard size={16} />}
-                {t.manageSubscription}
-              </button>
-            ) : null}
           </section>
 
           <section>
